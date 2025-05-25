@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_partner_form_inherit" model="ir.ui.view">
+        <field name="name">res.partner.form.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='sales_purchases']" position="inside">
+                <group string="Cấu hình công ty">
+                    <field name="is_parent_company"/>
+                    <field name="is_subsidiary"/>
+                    <field name="is_external_vendor"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+    <data>
+        <record id="view_partner_form_geocode" model="ir.ui.view">
+            <field name="name">res.partner.form.geocode</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='zip']" position="after">
+                    <field name="latitude"/>
+                    <field name="longitude"/>
+                    <button name="action_fetch_geolocation"
+                            string="Lấy tọa độ"
+                            type="object"
+                            class="btn-primary"
+                            invisible="state_id == False"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo> 
